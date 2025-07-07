@@ -9,9 +9,9 @@ const { ethers } = require("hardhat");
 const toEth = (value) => ethers.parseEther(value.toString());
 
 /**
- * Calculates a future deadline timestamp
+ * Calculates a future or past deadline timestamp
  * @dev Useful for time-limited transactions
- * @param {number} [minutes=5] - Minutes to add to current time
+ * @param {number} [minutes=5] - Minutes to add or subtract to current time
  * @returns {number} Unix timestamp (seconds since epoch)
  */
 const getDeadline = (minutes = 5) =>

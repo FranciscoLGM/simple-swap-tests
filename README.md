@@ -34,8 +34,6 @@ It includes:
 └── README.md
 ```
 
-````
-
 ---
 
 ## ⚙️ Requirements
@@ -126,5 +124,3 @@ MIT – see the [LICENSE](./LICENSE) file for details.
 > ⚠️ Note: This environment is intended for development, education, and early validation. A formal audit is strongly recommended before mainnet deployment.
 
 ---
-
-````

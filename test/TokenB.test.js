@@ -1,36 +1,43 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { toEth, deployToken } = require("./utils/helpers");
 
-describe("TokenB", function () {
-  let TokenB;
+describe("TokenB", () => {
+  // This test suite is for a simple ERC20 token named TokenB
+  // It checks basic functionalities like name, symbol, decimals, minting, and transferring tokens
+
+  const transferAmount = toEth(100);
+
+  let totalSupply;
   let tokenB;
-  let owner;
-  let addr1;
+  let owner, addr1;
 
-  before(async function () {
+  before(async () => {
     [owner, addr1] = await ethers.getSigners();
-    TokenB = await ethers.getContractFactory("TokenB");
-    tokenB = await TokenB.deploy(owner.address);
+    tokenB = await deployToken("TokenB", owner.address);
+    totalSupply = await tokenB.totalSupply();
   });
 
-  it("Should have correct name and symbol", async function () {
+  it("Should have correct name and symbol", async () => {
     expect(await tokenB.name()).to.equal("TokenB");
     expect(await tokenB.symbol()).to.equal("TKB");
   });
 
-  it("Should have 18 decimals", async function () {
+  it("Should have 18 decimals", async () => {
     expect(await tokenB.decimals()).to.equal(18);
   });
 
-  it("Should mint total supply to owner", async function () {
-    const ownerBalance = await tokenB.balanceOf(owner.address);
-    expect(ownerBalance).to.equal(ethers.parseUnits("1000000", 18));
+  it("Should mint total supply to owner", async () => {
+    const totalSupply = await tokenB.totalSupply();
+    const balance = await tokenB.balanceOf(owner.address);
+    expect(balance).to.equal(totalSupply);
   });
 
-  it("Should transfer tokens between accounts", async function () {
-    const transferAmount = ethers.parseUnits("100", 18);
-    await tokenB.transfer(addr1.address, transferAmount);
+  it("Should have correct initial supply", async () => {
+    expect(totalSupply).to.equal(toEth(1_000_000));
+  });
 
+  it("Should transfer tokens between accounts", async () => {
+    await tokenB.transfer(addr1.address, transferAmount);
     const addr1Balance = await tokenB.balanceOf(addr1.address);
     expect(addr1Balance).to.equal(transferAmount);
   });

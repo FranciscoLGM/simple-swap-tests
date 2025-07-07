@@ -1,4 +1,3 @@
-````markdown
 # 🧪 SIMPLE-SWAP-TESTS
 
 This repository contains the complete testing environment for the [`SimpleSwap`](https://github.com/yourusername/simple-swap) smart contract — a Uniswap V2-style decentralized exchange (DEX) using the constant product formula.
@@ -34,6 +33,7 @@ It includes:
 ├── .gitignore
 └── README.md
 ```
+
 ````
 
 ---
@@ -125,8 +125,6 @@ MIT – see the [LICENSE](./LICENSE) file for details.
 
 > ⚠️ Note: This environment is intended for development, education, and early validation. A formal audit is strongly recommended before mainnet deployment.
 
-```
-
 ---
 
-```
+````
